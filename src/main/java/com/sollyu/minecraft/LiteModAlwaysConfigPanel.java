@@ -6,7 +6,7 @@ import com.mumfrey.liteloader.modconfig.ConfigPanelHost;
 /**
  * 配置界面
  */
-public class LiteModAlwaysAttackConfigPanel extends AbstractConfigPanel {
+public class LiteModAlwaysConfigPanel extends AbstractConfigPanel {
     @Override
     protected void addOptions(ConfigPanelHost host) {
 
