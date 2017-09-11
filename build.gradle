@@ -1,5 +1,7 @@
 buildscript {
     repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }    // 优先使用阿里云镜像
+        maven { url 'https://dl.google.com/dl/android/maven2/' }                // 更改Google地址
         mavenLocal()
         mavenCentral()
         maven {
