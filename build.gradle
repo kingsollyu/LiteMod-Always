@@ -4,18 +4,9 @@ buildscript {
         maven { url 'https://dl.google.com/dl/android/maven2/' }                // 更改Google地址
         mavenLocal()
         mavenCentral()
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-        maven {
-            name = 'sponge'
-            url = 'http://repo.spongepowered.org/maven'
-        }
+        maven { url = "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url = "http://files.minecraftforge.net/maven" }
+        maven { url = 'http://repo.spongepowered.org/maven' }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
@@ -42,6 +33,7 @@ mixin {
 
 litemod {
     json {
+        name          = "always"
         author        = "Sollyu"
         description   = "Always Attack."
         displayName   = "display Name"

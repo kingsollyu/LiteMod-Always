@@ -34,7 +34,7 @@ public class LiteModAlways implements Tickable, Configurable {
     @Override
     public void onTick(Minecraft minecraft, float partialTicks, boolean inGame, boolean clock) {
         try {
-            if (!inGame || minecraft.currentScreen != null || !Minecraft.isGuiEnabled()) {
+            if (!inGame || minecraft.player == null) {
                 return;
             }
 
@@ -48,7 +48,8 @@ public class LiteModAlways implements Tickable, Configurable {
             if (isAttackEnabled()) {
                 long currentTime = System.currentTimeMillis();
                 if (currentTime - attackLastExecuteTime > 500) {
-                    KeyBinding.onTick(minecraft.gameSettings.keyBindAttack.getKeyCode());
+                    minecraft.playerController.attackEntity(minecraft.player, minecraft.objectMouseOver.entityHit);
+                    // KeyBinding.onTick(minecraft.gameSettings.keyBindAttack.getKeyCode());
                     attackLastExecuteTime = currentTime;
                 }
             }
@@ -59,7 +60,7 @@ public class LiteModAlways implements Tickable, Configurable {
 
     @Override
     public String getVersion() {
-        return "1.0.1";
+        return "1.0.2";
     }
 
     @Override

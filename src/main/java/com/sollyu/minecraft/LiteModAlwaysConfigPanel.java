@@ -9,7 +9,7 @@ import com.mumfrey.liteloader.modconfig.ConfigPanelHost;
 public class LiteModAlwaysConfigPanel extends AbstractConfigPanel {
     @Override
     protected void addOptions(ConfigPanelHost host) {
-
+        addLabel(0, 0, 0, 100, 0, 0,"dasfsad");
     }
 
     @Override
