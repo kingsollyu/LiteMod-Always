@@ -41,7 +41,6 @@ public class LiteModAlways implements Tickable, Configurable {
             // 控制键被按下
             if (LiteModAlways.swapKeyBinding.isPressed()) {
                 attackEnabled = !attackEnabled;
-                minecraft.player.sendChatMessage(this.getName() + "" + isAttackEnabled());
             }
 
             // 使用时间差计算是否执行操作
@@ -60,7 +59,7 @@ public class LiteModAlways implements Tickable, Configurable {
 
     @Override
     public String getVersion() {
-        return "1.0.0";
+        return "1.0.1";
     }
 
     @Override
