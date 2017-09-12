@@ -28,3 +28,4 @@
 
 ![](./images/preview.gif)
 
+> 展示GIF有点大，耐心等待
