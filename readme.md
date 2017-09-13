@@ -26,6 +26,6 @@
 
 ## 效果展示
 
-![](./images/preview.gif)
+![](https://media.giphy.com/media/3o7aD6MglB2YversCQ/giphy.gif)
 
 > 展示GIF有点大，耐心等待
