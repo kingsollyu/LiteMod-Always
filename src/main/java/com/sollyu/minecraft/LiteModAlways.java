@@ -7,6 +7,7 @@ import com.mumfrey.liteloader.modconfig.ConfigPanel;
 import com.mumfrey.liteloader.util.log.LiteLoaderLogger;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.util.EnumHand;
 import org.lwjgl.input.Keyboard;
 
 import java.io.File;
@@ -34,13 +35,14 @@ public class LiteModAlways implements Tickable, Configurable {
     @Override
     public void onTick(Minecraft minecraft, float partialTicks, boolean inGame, boolean clock) {
         try {
-            if (!inGame || minecraft.currentScreen != null || !Minecraft.isGuiEnabled()) {
+            if (!inGame || minecraft.player == null) {
                 return;
             }
 
             // 控制键被按下
             if (LiteModAlways.swapKeyBinding.isPressed()) {
                 attackEnabled = !attackEnabled;
+                minecraft.player.sendChatMessage(String.format("/t %s always attack :%s", minecraft.player.getName(), attackEnabled ? "enable" : "disabled"));
             }
 
             // 使用时间差计算是否执行操作
@@ -48,18 +50,22 @@ public class LiteModAlways implements Tickable, Configurable {
             if (isAttackEnabled()) {
                 long currentTime = System.currentTimeMillis();
                 if (currentTime - attackLastExecuteTime > 500) {
-                    KeyBinding.onTick(minecraft.gameSettings.keyBindAttack.getKeyCode());
+                    minecraft.playerController.attackEntity(minecraft.player, minecraft.objectMouseOver.entityHit);
+                    minecraft.player.swingArm(EnumHand.MAIN_HAND);
+                    // KeyBinding.onTick(minecraft.gameSettings.keyBindAttack.getKeyCode());
                     attackLastExecuteTime = currentTime;
                 }
             }
         } catch (Throwable e) {
-            LiteLoaderLogger.severe(e, e.getMessage());
+            e.printStackTrace();
+            // TODO: java.lang.IllegalStateException: Can't overwrite cause with java.lang.NullPointerException
+            //LiteLoaderLogger.warning(e, e.getMessage());
         }
     }
 
     @Override
     public String getVersion() {
-        return "1.0.1";
+        return "1.0.3";
     }
 
     @Override
