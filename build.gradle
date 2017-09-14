@@ -33,13 +33,17 @@ mixin {
 
 litemod {
     json {
-        name          = "always"
-        author        = "Sollyu"
-        description   = "Always Attack."
-        displayName   = "display Name"
+        name          = modBaseName
+        author        = modAuthor
+        description   = modDescription
+        displayName   = modDisplayName
     }
 }
 
 jar {
     from litemod.outputs
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
