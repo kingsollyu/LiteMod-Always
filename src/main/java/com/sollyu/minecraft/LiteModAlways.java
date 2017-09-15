@@ -12,6 +12,7 @@ import org.lwjgl.input.Keyboard;
 
 import java.io.File;
 
+
 public class LiteModAlways implements Tickable, Configurable {
 
     private static final KeyBinding swapKeyBinding = new KeyBinding("key.always.attack.toggle", Keyboard.KEY_F9, "key.categories.litemods");
@@ -20,7 +21,8 @@ public class LiteModAlways implements Tickable, Configurable {
     private boolean attackEnabled = false;
 
     // 上一次执行操作的时间
-    private Long attackLastExecuteTime = -1L;
+    private Long attackLastExecuteTime = -1L;   // 上一次执行攻击的时间
+    private Long attackLastJumpTime    = -1L;   // 上一次跳跃时间
 
     // get
     public boolean isAttackEnabled() {
@@ -49,11 +51,18 @@ public class LiteModAlways implements Tickable, Configurable {
             // 尽量减少计算，所以分了两个if
             if (isAttackEnabled()) {
                 long currentTime = System.currentTimeMillis();
-                if (currentTime - attackLastExecuteTime > 500) {
+                if (currentTime - attackLastExecuteTime > 1500 && minecraft.objectMouseOver.entityHit != null) {
                     minecraft.playerController.attackEntity(minecraft.player, minecraft.objectMouseOver.entityHit);
                     minecraft.player.swingArm(EnumHand.MAIN_HAND);
                     // KeyBinding.onTick(minecraft.gameSettings.keyBindAttack.getKeyCode());
                     attackLastExecuteTime = currentTime;
+                    attackLastJumpTime    = currentTime;
+                }
+
+                // 当5秒后没有对象攻击时就自己跳一下，防止AKF
+                if ((currentTime - attackLastJumpTime) > (3 * 60 * 1000)) {
+                    attackLastJumpTime    = currentTime;
+                    minecraft.player.jump();
                 }
             }
         } catch (Throwable e) {
@@ -65,7 +74,7 @@ public class LiteModAlways implements Tickable, Configurable {
 
     @Override
     public String getVersion() {
-        return "1.0.3";
+        return "1.0.4";
     }
 
     @Override
