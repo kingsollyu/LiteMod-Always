@@ -51,7 +51,7 @@ public class LiteModAlways implements Tickable, Configurable {
             // 尽量减少计算，所以分了两个if
             if (isAttackEnabled()) {
                 long currentTime = System.currentTimeMillis();
-                if (currentTime - attackLastExecuteTime > 900 && minecraft.objectMouseOver.entityHit != null) {
+                if (currentTime - attackLastExecuteTime > 1500 && minecraft.objectMouseOver.entityHit != null) {
                     minecraft.playerController.attackEntity(minecraft.player, minecraft.objectMouseOver.entityHit);
                     minecraft.player.swingArm(EnumHand.MAIN_HAND);
                     // KeyBinding.onTick(minecraft.gameSettings.keyBindAttack.getKeyCode());
@@ -60,7 +60,7 @@ public class LiteModAlways implements Tickable, Configurable {
                 }
 
                 // 当5秒后没有对象攻击时就自己跳一下，防止AKF
-                if (currentTime - attackLastJumpTime > 15 * 1000) {
+                if ((currentTime - attackLastJumpTime) > (3 * 60 * 1000)) {
                     attackLastJumpTime    = currentTime;
                     minecraft.player.jump();
                 }
@@ -74,7 +74,7 @@ public class LiteModAlways implements Tickable, Configurable {
 
     @Override
     public String getVersion() {
-        return "1.0.3";
+        return "1.0.4";
     }
 
     @Override
