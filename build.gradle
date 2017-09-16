@@ -7,15 +7,18 @@ buildscript {
         maven { url = "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url = "http://files.minecraftforge.net/maven" }
         maven { url = 'http://repo.spongepowered.org/maven' }
+        maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
         classpath 'org.spongepowered:mixingradle:0.4-SNAPSHOT'
+        classpath 'gradle.plugin.de.fuerstenau:BuildConfigPlugin:1.1.8'
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle.liteloader'
 apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'de.fuerstenau.buildconfig'
 
 version          = modVersion
 group            = modGroup
@@ -46,4 +49,10 @@ jar {
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+}
+
+buildConfig {
+    buildConfigField 'String', 'MOD_ID'     , modBaseName
+    buildConfigField 'String', 'MOD_VERSION', modVersion
+    buildConfigField 'String', 'MC_VERSION' , mcVersion
 }
