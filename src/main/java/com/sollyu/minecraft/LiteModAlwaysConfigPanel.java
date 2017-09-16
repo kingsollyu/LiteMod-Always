@@ -48,7 +48,7 @@ public class LiteModAlwaysConfigPanel extends AbstractConfigPanel {
             jumpConfigTextField     = this.addTextField(id++, jumpByAttackGuiCheckbox.xPosition + jumpByAttackGuiCheckbox.getButtonWidth() + 5, jumpByAttackGuiCheckbox.yPosition, 50, 12 /* LiteLoader的CheckBox默认高度为12 */);
 
             if (getLiteModAlways().getOnlineVersionJson() != null && !getLiteModAlways().getOnlineVersionJson().getAsJsonObject("promos").get(BuildConfig.MC_VERSION + "-latest").getAsString().equals(BuildConfig.MOD_VERSION)) {
-                checkUpdateButton = this.addControl(new GuiButton(id++, 20, (id - 1) * SPACING, 200, ITEM_HEIGHT, I18n.format("always.panel.update.button", getLiteModAlways().getOnlineVersionJson().getAsJsonObject("promos").get(BuildConfig.MC_VERSION + "-recommended").getAsString())), updateButtonConfigOptionListener);
+                checkUpdateButton = this.addControl(new GuiButton(id++, 20, (id - 1) * SPACING, 200, ITEM_HEIGHT, I18n.format("always.panel.update.button", getLiteModAlways().getOnlineVersionJson().getAsJsonObject("promos").get(BuildConfig.MC_VERSION + "-latest").getAsString())), updateButtonConfigOptionListener);
             }
 
             attackGuiCheckbox.checked = getLiteModAlways().isEnableAttack();

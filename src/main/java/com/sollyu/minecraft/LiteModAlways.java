@@ -62,7 +62,7 @@ public class LiteModAlways implements Tickable, Configurable, Runnable {
             // 是否已经显示过更新
             if (isEnableShowUpdate() && getOnlineVersionJson() != null) {
                 setEnableShowUpdate(false);
-                minecraft.ingameGUI.getChatGUI().printChatMessage(new TextComponentTranslation("always.message.update", getOnlineVersionJson().getAsJsonObject("promos").get(BuildConfig.MC_VERSION + "-recommended")));
+                minecraft.ingameGUI.getChatGUI().printChatMessage(new TextComponentTranslation("always.message.update", getOnlineVersionJson().getAsJsonObject("promos").get(BuildConfig.MC_VERSION + "-latest")));
             }
 
             // 控制键被按下
@@ -123,7 +123,7 @@ public class LiteModAlways implements Tickable, Configurable, Runnable {
     @Override
     public void run() {
         try {
-            URL               versionUrl        = new URL("http://raw.githubusercontent.com/kingsollyu/LiteMod-Always/develop/online/last.version.json");
+            URL               versionUrl        = new URL("http://raw.githubusercontent.com/kingsollyu/LiteMod-Always/master/online/last.version.json");
             DefaultHttpClient defaultHttpClient = new DefaultHttpClient();
             HttpResponse      httpResponse      = defaultHttpClient.execute(new HttpGet(versionUrl.toURI()));
             if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
