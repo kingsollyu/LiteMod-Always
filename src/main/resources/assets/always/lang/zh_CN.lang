@@ -1,2 +1,8 @@
-app.name=重复
+always.app.name=重复工作
+always.string.enable=开启
+always.string.disabled=关闭
+always.panel.attack.check=自动攻击(毫秒) =>
+always.panel.jump.check=自动跳跃(毫秒) =>
+always.panel.jump.attack.check=仅在没有攻击时 =>
+always.message.attack.toggle=自动攻击状态： %s
 key.always.attack.attack.toggle=自动攻击
