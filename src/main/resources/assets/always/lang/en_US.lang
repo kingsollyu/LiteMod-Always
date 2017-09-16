@@ -1,2 +1,10 @@
-app.name=always
-key.always.attack.toggle=this tip message.
+always.app.name=always
+always.string.enable=enable
+always.string.disabled=disabled
+always.panel.attack.check=Auto attack(ms) =>
+always.panel.jump.check=Auto jump(s) =>
+always.panel.jump.attack.check=Just attack idle=>
+always.panel.update.button=Download new version: %s
+always.message.attack.toggle=§ealways attack: %s
+always.message.update=§ealways has new version: %s
+key.always.attack.toggle=auto attack
